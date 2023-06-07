@@ -12,7 +12,7 @@
 }
 
 .modal-container.ativo {
-  display: flex;
+  display:flex;
 }
 
 .modal {
