@@ -5,13 +5,13 @@ export default class TabNav {
     this.activeClass = "ativo";
   }
 
-  // ativa a tab de acordo com o index da mesma
+  // active tab de acordo com o index da mesma
   activeTab(index) {
     this.tabContent.forEach((section) => {
       section.classList.remove("ativo");
     });
-    const direcao = this.tabContent[index].dataset.anime;
-    this.tabContent[index].classList.add("ativo", direcao);
+    const direction = this.tabContent[index].dataset.anime;
+    this.tabContent[index].classList.add("ativo", direction);
   }
 
   // adiciona os eventos nas tabs
