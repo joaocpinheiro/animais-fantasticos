@@ -1,9 +1,19 @@
+import debounce from "./debounce.js";
+
 export default class ScrollAnima {
   constructor(sections) {
     this.sections = document.querySelectorAll(sections);
     this.windowMetade = window.innerHeight * 0.6;
+    this.dale = debounce(this.dale.bind(this), 50);
 
-    this.checkDistance = this.checkDistance.bind(this);
+    this.checkDistance = debounce(this.checkDistance.bind(this), 50);
+  }
+
+  // pega a distancia de cada item em relação
+  // ao topo do site]
+  // eslint-disable-next-line class-methods-use-this
+  dale() {
+    console.log("dale po");
   }
 
   getDistance() {
@@ -16,6 +26,8 @@ export default class ScrollAnima {
     });
   }
 
+  // verifica a distancia em cada objeto
+  // em relação ao scroll do site
   checkDistance() {
     this.distance.forEach((item) => {
       if (window.pageYOffset > item.offset) {
@@ -26,27 +38,17 @@ export default class ScrollAnima {
     });
   }
 
-  animaScroll() {
-    this.sections.forEach((section) => {
-      const sectionTop = section.getBoundingClientRect().top;
-      const isSectionVisible = sectionTop - this.windowMetade < 0;
-      if (isSectionVisible) {
-        section.classList.add("ativo");
-      } else if (section.classList.contains("ativo")) {
-        section.classList.remove("ativo");
-      }
-    });
-  }
-
   init() {
     if (this.sections.length) {
       this.getDistance();
       this.checkDistance();
       window.addEventListener("scroll", this.checkDistance);
+      window.addEventListener("scroll", this.dale);
     }
     return this;
   }
 
+  // remove o Event de scroll
   stop() {
     window.removeEventListener("scroll", this.checkDistance);
   }
