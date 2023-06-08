@@ -22,7 +22,7 @@ export default function initAnimaNumeros() {
     if (mutation[0].target.classList.contains('ativo')) {
       observer.disconnect();
       animaNumeros();
-    }
+    git 
   }
   observer = new MutationObserver(handleMutation);
 
