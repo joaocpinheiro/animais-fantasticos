@@ -4,18 +4,12 @@ export default class ScrollAnima {
   constructor(sections) {
     this.sections = document.querySelectorAll(sections);
     this.windowMetade = window.innerHeight * 0.6;
-    this.dale = debounce(this.dale.bind(this), 50);
 
     this.checkDistance = debounce(this.checkDistance.bind(this), 50);
   }
 
   // pega a distancia de cada item em relação
-  // ao topo do site]
-  // eslint-disable-next-line class-methods-use-this
-  dale() {
-    console.log("dale po");
-  }
-
+  // ao topo do site
   getDistance() {
     this.distance = [...this.sections].map((section) => {
       const offset = section.offsetTop;
@@ -43,7 +37,6 @@ export default class ScrollAnima {
       this.getDistance();
       this.checkDistance();
       window.addEventListener("scroll", this.checkDistance);
-      window.addEventListener("scroll", this.dale);
     }
     return this;
   }
